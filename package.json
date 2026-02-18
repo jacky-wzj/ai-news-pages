@@ -1,0 +1,7 @@
+{
+  "name": "ai-news-static",
+  "version": "1.0.0",
+  "scripts": {
+    "vercel-build": "echo 'Static site - no build needed'"
+  }
+}

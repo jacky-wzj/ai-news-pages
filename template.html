@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📰 AI 资讯日报 - {DATE}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; margin-bottom: 30px; }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header p { opacity: 0.9; }
+        .nav { display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
+        .nav a { padding: 10px 20px; background: white; color: #667eea; text-decoration: none; border-radius: 25px; font-weight: 500; transition: transform 0.2s; }
+        .nav a:hover { transform: scale(1.05); }
+        .section { background: white; border-radius: 12px; padding: 25px; margin-bottom: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .section h2 { color: #667eea; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #f0f0f0; }
+        .item { padding: 20px 0; border-bottom: 1px solid #f0f0f0; }
+        .item:last-child { border-bottom: none; }
+        .item h3 { color: #333; margin-bottom: 10px; font-size: 1.1em; }
+        .item .meta { color: #888; font-size: 0.9em; margin-bottom: 10px; }
+        .item p { color: #555; margin-bottom: 10px; }
+        .item .tags { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+        .tag { padding: 4px 12px; background: #f0f0f0; border-radius: 15px; font-size: 0.85em; color: #666; }
+        .screenshot { max-width: 100%; border-radius: 8px; margin: 15px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .link { color: #667eea; text-decoration: none; }
+        .link:hover { text-decoration: underline; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .card { background: #f8f9fa; border-radius: 8px; padding: 20px; }
+        .card h4 { color: #333; margin-bottom: 10px; }
+        .card p { color: #666; font-size: 0.9em; }
+        .stats { display: flex; justify-content: center; gap: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px; margin: 20px 0; }
+        .stat { text-align: center; }
+        .stat .num { font-size: 2em; font-weight: bold; color: #667eea; }
+        .stat .label { color: #888; font-size: 0.9em; }
+        footer { text-align: center; padding: 30px; color: #888; }
+        .highlight { background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); border-left: 4px solid #ffc107; padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .priority { border-left: 4px solid #667eea; }
+        .code-block { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 8px; overflow-x: auto; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📰 AI 资讯日报</h1>
+        <p>{DATE} | 精选高质量 AI 资讯</p>
+        <div class="nav">
+            <a href="#insights">🌟 核心洞察</a>
+            <a href="#newsletter">📧 Newsletter</a>
+            <a href="#papers">📚 论文</a>
+            <a href="#github">💻 GitHub</a>
+            <a href="#tools">🛠️ 工具</a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="stats">
+            <div class="stat"><div class="num">{INSIGHT_COUNT}</div><div class="label">核心洞察</div></div>
+            <div class="stat"><div class="num">{PAPER_COUNT}</div><div class="label">论文</div></div>
+            <div class="stat"><div class="num">{GITHUB_COUNT}</div><div class="label">开源项目</div></div>
+            <div class="stat"><div class="num">{TOOL_COUNT}</div><div class="label">新工具</div></div>
+        </div>
+
+        <section id="insights" class="section">
+            <h2>🌟🌟🌟 核心人物洞察 TOP {INSIGHT_COUNT} ⭐重点</h2>
+            {INSIGHTS_HTML}
+        </section>
+
+        <section id="newsletter" class="section">
+            <h2>📧 深度 Newsletter 精选 TOP {NEWSLETTER_COUNT}</h2>
+            {NEWSLETTER_HTML}
+        </section>
+
+        <section id="papers" class="section">
+            <h2>📚 Hugging Face Daily Papers TOP {PAPER_COUNT}</h2>
+            {PAPERS_HTML}
+        </section>
+
+        <section id="x-posts" class="section">
+            <h2>𝕏 X AI 大V动态 TOP {X_COUNT}</h2>
+            {X_POSTS_HTML}
+        </section>
+
+        <section id="discord" class="section">
+            <h2>🏛️ Discord 社区精选 TOP {DISCORD_COUNT}</h2>
+            {DISCORD_HTML}
+        </section>
+
+        <section id="github" class="section">
+            <h2>💻 GitHub Trending AI 项目 TOP {GITHUB_COUNT}</h2>
+            {GITHUB_HTML}
+        </section>
+
+        <section id="hn" class="section">
+            <h2>📰 Hacker News 热门讨论 TOP {HN_COUNT}</h2>
+            {HN_HTML}
+        </section>
+
+        <section id="reddit" class="section">
+            <h2>🤖 Reddit AI 社区精选 TOP {REDDIT_COUNT}</h2>
+            {REDDIT_HTML}
+        </section>
+
+        <section id="tools" class="section">
+            <h2>🛠️ AI 应用工具箱 TOP {TOOL_COUNT} ⭐NEW</h2>
+            {TOOLS_HTML}
+        </section>
+
+        <section id="agent" class="section">
+            <h2>🤖 Agent 热门资讯 TOP {AGENT_COUNT} ⭐</h2>
+            {AGENT_HTML}
+        </section>
+
+        <section id="valley" class="section">
+            <h2>🇺🇸 硅谷热点新闻 TOP {VALLEY_COUNT}</h2>
+            {VALLEY_HTML}
+        </section>
+
+        <section id="china" class="section">
+            <h2>🇨🇳 大陆智能体动态 TOP {CHINA_COUNT}</h2>
+            {CHINA_HTML}
+        </section>
+    </div>
+
+    <footer>
+        <p>🤖 AI 资讯日报 | 每日 {TIME} 自动更新</p>
+        <p>📁 截图存档: <a class="link" href="SCREENSHOTS_LINK">查看截图</a></p>
+    </footer>
+</body>
+</html>
